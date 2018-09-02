@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# TODO
+# - [ ] Add cong. script generator
+# - [ ] Add cong. script decoder & player
+# - [ ] Add image printer
+# - [ ] Add bats
+# - [ ] Run on mac
+# - [ ] Run on ubuntu
+
+MUSIC_URI="/Users/davidchang/Music/ladygaga/01\ Bad\ Romance.wav"
+MUSIC_PLAY="afplay"
+
+play_music_background(){
+  command -v ${MUSIC_PLAY} > /dev/null 2>&1 || { echo "Player command ${MUSIC_PLAY} is required to run but not found. Happy birthday anyway :)"; exit 1; }
+  ${MUSIC_PLAY} ${MUSIC_URI} &
+}
+
+play_music_background
