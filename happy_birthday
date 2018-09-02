@@ -8,12 +8,24 @@
 # - [ ] Run on mac
 # - [ ] Run on ubuntu
 
-MUSIC_URI="/Users/davidchang/Music/ladygaga/01\ Bad\ Romance.wav"
+MUSIC_URI="secret.mp3"
 MUSIC_PLAY="afplay"
+PICTURE_BASE64="picture_base64"
 
 play_music_background(){
   command -v ${MUSIC_PLAY} > /dev/null 2>&1 || { echo "Player command ${MUSIC_PLAY} is required to run but not found. Happy birthday anyway :)"; exit 1; }
   ${MUSIC_PLAY} ${MUSIC_URI} &
 }
 
-play_music_background
+print_picture(){
+  [[ $(tput cols) -gt 150 ]] || { echo "Terminal with width > 150 cols is required. Full screen, please?. Happy birthday anyway :)"; exit 1; }
+
+  cat ${PICTURE_BASE64} | base64 -D > /tmp/picture
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    echo "${line}"
+    sleep 0.1
+  done < /tmp/picture
+}
+
+#play_music_background
+print_picture
