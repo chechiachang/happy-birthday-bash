@@ -27,5 +27,20 @@ print_picture(){
   done < /tmp/picture
 }
 
+music_killer(){
+  local pwd="Yes, I'm happy now."
+  echo "Happy birthday! Enter '${pwd}' to kill music"
+  read input
+  if [[ ${input} == ${pwd} ]]; then
+    declare -a pss=($(ps | grep ${MUSIC_PLAY} | awk '{print $1}') )
+    for p in ${pss[@]}; do
+      kill ${p}
+    done
+  else
+    echo "Oops. Kill ps by yourself then :P"
+  fi
+}
+
 play_music_background
 print_picture
+music_killer
