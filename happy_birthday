@@ -27,5 +27,5 @@ print_picture(){
   done < /tmp/picture
 }
 
-#play_music_background
+play_music_background
 print_picture
